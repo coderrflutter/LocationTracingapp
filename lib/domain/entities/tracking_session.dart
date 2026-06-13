@@ -1,4 +1,3 @@
-/// Current tracking session metadata persisted when STOP is pressed.
 class TrackingSession {
   const TrackingSession({
     required this.id,

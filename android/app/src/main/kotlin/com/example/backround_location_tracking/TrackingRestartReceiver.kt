@@ -4,9 +4,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 
-/**
- * Restarts the foreground location service after process death (force-kill / swipe away).
- */
 class TrackingRestartReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
         val sessionId = intent?.getStringExtra(EXTRA_SESSION_ID)

@@ -1,6 +1,5 @@
 import Foundation
 
-/// Persists location readings when the Flutter engine is not running.
 enum LocationBuffer {
     private static let key = "buffered_locations"
 

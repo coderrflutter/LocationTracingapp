@@ -5,11 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 
-/** Helper to start/stop the foreground location service. */
 object ServiceStarter {
     private val serviceClassName = LocationTrackingService::class.java.name
 
-    /** Starts tracking or updates session — used when user taps START. */
     fun startOrUpdate(context: Context, sessionId: String, intervalSeconds: Int) {
         val appContext = context.applicationContext
         val intent = Intent(appContext, LocationTrackingService::class.java).apply {
@@ -32,10 +30,6 @@ object ServiceStarter {
         appContext.startService(intent)
     }
 
-    /**
-     * Starts the service only if it is not already running.
-     * Used on app reopen — never restart a live service (that was stopping tracking).
-     */
     fun ensureRunning(context: Context) {
         if (isServiceRunning(context)) return
         val state = TrackingPreferences.load(context) ?: return

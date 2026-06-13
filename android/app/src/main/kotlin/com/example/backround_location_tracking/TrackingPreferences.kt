@@ -2,7 +2,6 @@ package com.example.backround_location_tracking
 
 import android.content.Context
 
-/** Shared tracking state persisted across process death and service restarts. */
 object TrackingPreferences {
     const val PREFS_NAME = "tracking_prefs"
     const val KEY_IS_ACTIVE = "is_active"

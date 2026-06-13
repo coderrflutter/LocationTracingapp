@@ -32,7 +32,6 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    // Skip the first resumed event — initialize() already syncs on cold start.
     if (state == AppLifecycleState.resumed &&
         widget.viewModel.isInitialized) {
       widget.viewModel.onAppResumed();

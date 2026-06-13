@@ -45,7 +45,6 @@ import UIKit
         result(LocationBuffer.flush())
 
       case "requestBatteryOptimizationExemption":
-        // No Android-style battery optimization on iOS.
         result(true)
 
       default:
@@ -73,7 +72,6 @@ import UIKit
     eventChannel.setStreamHandler(LocationEventStreamHandler())
   }
 
-  /// Reads battery level via UIDevice (no third-party plugins).
   private static func readBatteryLevel() -> Int {
     UIDevice.current.isBatteryMonitoringEnabled = true
     let level = UIDevice.current.batteryLevel
@@ -84,7 +82,6 @@ import UIKit
   }
 }
 
-/// Forwards native location events to Flutter.
 final class LocationEventStreamHandler: NSObject, FlutterStreamHandler {
   func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
     LocationTrackingManager.shared.setEventSink(events)

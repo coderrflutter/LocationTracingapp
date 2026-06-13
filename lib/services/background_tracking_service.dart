@@ -6,7 +6,6 @@ import 'package:permission_handler/permission_handler.dart';
 
 import '../core/constants/app_constants.dart';
 
-/// Bridges Flutter to native foreground/background location tracking services.
 class BackgroundTrackingService {
   BackgroundTrackingService({
     MethodChannel? methodChannel,
@@ -47,7 +46,7 @@ class BackgroundTrackingService {
         'requestBatteryOptimizationExemption',
       );
     } on PlatformException {
-      // iOS has no equivalent.
+      return;
     }
   }
 
@@ -55,7 +54,7 @@ class BackgroundTrackingService {
     try {
       await _methodChannel.invokeMethod<void>('openAutostartSettings');
     } on PlatformException {
-      // iOS has no equivalent.
+      return;
     }
   }
 
@@ -63,7 +62,7 @@ class BackgroundTrackingService {
     try {
       await _methodChannel.invokeMethod<void>('openVivoBackgroundSettings');
     } on PlatformException {
-      // Not a Vivo device.
+      return;
     }
   }
 
@@ -113,7 +112,6 @@ class BackgroundTrackingService {
     }
   }
 
-  /// Reads all saved locations for a session directly from native SQLite.
   Future<List<Map<String, dynamic>>> getSessionLocations(
     String sessionId,
   ) async {

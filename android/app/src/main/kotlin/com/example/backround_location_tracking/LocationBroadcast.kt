@@ -3,7 +3,6 @@ package com.example.backround_location_tracking
 import android.content.Context
 import android.content.Intent
 
-/** Sends location updates from the :location process to the main Flutter process. */
 object LocationBroadcast {
     const val ACTION = "com.example.backround_location_tracking.LOCATION_UPDATE"
     const val EXTRA_ID = "id"

@@ -1,4 +1,3 @@
-/// Domain entity representing a single GPS reading.
 class LocationRecord {
   const LocationRecord({
     required this.id,

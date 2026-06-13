@@ -10,9 +10,6 @@ import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodChannel
 
-/**
- * Registers platform channels for tracking control, battery level, and location events.
- */
 class MainActivity : FlutterActivity() {
 
     private var locationReceiver: BroadcastReceiver? = null
@@ -112,13 +109,11 @@ class MainActivity : FlutterActivity() {
         )
 
         registerLocationReceiver()
-        // Only start if the service actually died — never restart an already-running service.
         ServiceStarter.ensureRunning(this)
     }
 
     override fun onResume() {
         super.onResume()
-        // Sync UI only; do not blindly restart the service on every resume.
         ServiceStarter.ensureRunning(this)
     }
 
@@ -128,7 +123,6 @@ class MainActivity : FlutterActivity() {
         super.onDestroy()
     }
 
-    /** Receives GPS updates from the foreground service and forwards to Flutter. */
     private fun registerLocationReceiver() {
         if (locationReceiver != null) return
 

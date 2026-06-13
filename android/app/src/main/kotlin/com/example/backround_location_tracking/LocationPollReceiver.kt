@@ -8,9 +8,6 @@ import android.content.Intent
 import android.os.Build
 import android.os.SystemClock
 
-/**
- * Backup alarm every 60s — fires even when requestLocationUpdates is throttled by the OS.
- */
 class LocationPollReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
         if (!TrackingPreferences.isActive(context)) return

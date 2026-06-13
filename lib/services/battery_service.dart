@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 
 import '../core/constants/app_constants.dart';
 
-/// Reads battery percentage via custom platform channels (no third-party plugins).
 class BatteryService {
   BatteryService({MethodChannel? channel})
       : _channel = channel ??
@@ -17,7 +16,6 @@ class BatteryService {
 
   Stream<int> get batteryStream => _batteryController.stream;
 
-  /// Fetches the current battery level (0–100) from native code.
   Future<int> getBatteryLevel() async {
     try {
       final level = await _channel.invokeMethod<int>('getBatteryLevel');
@@ -27,7 +25,6 @@ class BatteryService {
     }
   }
 
-  /// Polls battery level on a fixed interval for the home screen.
   void startPolling({Duration interval = AppConstants.batteryPollInterval}) {
     _pollTimer?.cancel();
     unawaited(_emitBatteryLevel());

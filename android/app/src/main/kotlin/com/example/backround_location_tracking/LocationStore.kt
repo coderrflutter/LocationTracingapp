@@ -6,10 +6,6 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import java.util.UUID
 
-/**
- * Single source of truth for all GPS records.
- * Both the foreground service and Flutter read/write this same SQLite database.
- */
 object LocationStore {
     private const val DB_NAME = "location_records.db"
     private const val TABLE = "locations"

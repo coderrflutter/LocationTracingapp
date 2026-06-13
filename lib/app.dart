@@ -6,7 +6,6 @@ import 'presentation/viewmodels/tracking_view_model.dart';
 import 'services/background_tracking_service.dart';
 import 'services/battery_service.dart';
 
-/// Application root with dependency wiring.
 class LocationTrackerApp extends StatelessWidget {
   const LocationTrackerApp({
     super.key,
@@ -29,7 +28,6 @@ class LocationTrackerApp extends StatelessWidget {
   }
 }
 
-/// Builds repositories and services, then launches the app.
 Future<TrackingViewModel> bootstrap() async {
   final dataSource = await initHiveDataSource();
   final locationRepository = LocationRepositoryImpl(dataSource);

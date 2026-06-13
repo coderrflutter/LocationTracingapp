@@ -2,7 +2,6 @@ import CoreLocation
 import Flutter
 import UIKit
 
-/// Manages background GPS updates every 60 seconds on iOS.
 final class LocationTrackingManager: NSObject, CLLocationManagerDelegate {
     static let shared = LocationTrackingManager()
 
@@ -57,8 +56,6 @@ final class LocationTrackingManager: NSObject, CLLocationManagerDelegate {
         start(sessionId: sessionId, intervalSeconds: interval == 0 ? 60 : interval)
     }
 
-    // MARK: - CLLocationManagerDelegate
-
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
 
@@ -89,7 +86,6 @@ final class LocationTrackingManager: NSObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        // Location errors are expected indoors; the next update will retry.
         NSLog("LocationTrackingManager error: \(error.localizedDescription)")
     }
 }

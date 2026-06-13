@@ -9,7 +9,6 @@ import '../../domain/repositories/location_repository.dart';
 import '../../services/background_tracking_service.dart';
 import '../../services/battery_service.dart';
 
-/// Coordinates tracking lifecycle, persistence, and UI state.
 class TrackingViewModel extends ChangeNotifier {
   TrackingViewModel({
     required LocationRepository locationRepository,
@@ -74,7 +73,6 @@ class TrackingViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Called when app reopens — loads ALL locations from native SQLite.
   Future<void> onAppResumed() async {
     final nativeState = await _backgroundService.getTrackingState();
     _isTracking = nativeState.isActive;
@@ -101,7 +99,6 @@ class TrackingViewModel extends ChangeNotifier {
     _activeSession = await _sessionRepository.getActiveSession();
   }
 
-  /// Native SQLite is the source of truth — always read from there.
   Future<void> _loadFromNativeStore() async {
     final sessionId = _activeSession?.id;
     if (sessionId == null) {
@@ -116,7 +113,6 @@ class TrackingViewModel extends ChangeNotifier {
     _records = nativeList.map(_mapToRecord).toList()
       ..sort((a, b) => b.timestamp.compareTo(a.timestamp));
 
-    // Keep Hive in sync as backup.
     for (final record in _records) {
       await _locationRepository.saveRecord(record);
     }
@@ -181,7 +177,6 @@ class TrackingViewModel extends ChangeNotifier {
     _isLoading = false;
     notifyListeners();
 
-    // Load first point after short delay.
     await Future<void>.delayed(const Duration(seconds: 2));
     await _loadFromNativeStore();
   }

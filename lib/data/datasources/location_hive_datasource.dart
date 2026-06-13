@@ -5,7 +5,6 @@ import '../../domain/entities/location_record.dart';
 import '../../domain/entities/tracking_session.dart';
 import '../../domain/repositories/location_repository.dart';
 
-/// Hive-backed persistence for location records and sessions.
 class LocationHiveDataSource {
   LocationHiveDataSource({
     required Box<Map> recordsBox,
@@ -21,11 +20,7 @@ class LocationHiveDataSource {
 
   static const _activeSessionKey = 'active_session_id';
 
-  Future<void> init() async {
-    if (!Hive.isAdapterRegistered(0)) {
-      // Manual maps are used; no code generation required.
-    }
-  }
+  Future<void> init() async {}
 
   Future<void> saveRecord(LocationRecord record) async {
     await _recordsBox.put(record.id, {
@@ -154,7 +149,6 @@ class TrackingSessionRepositoryImpl implements TrackingSessionRepository {
   Future<void> clearActiveSession() => _dataSource.clearActiveSession();
 }
 
-/// Opens Hive boxes used by the app.
 Future<LocationHiveDataSource> initHiveDataSource() async {
   await Hive.initFlutter();
   final recordsBox =

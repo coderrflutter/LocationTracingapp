@@ -7,7 +7,6 @@ import android.net.Uri
 import android.os.Build
 import android.provider.Settings
 
-/** Opens manufacturer-specific screens so background work is not killed. */
 object DeviceSettingsHelper {
     fun openBatteryOptimizationSettings(context: Context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return
@@ -22,7 +21,6 @@ object DeviceSettingsHelper {
         context.startActivity(intent)
     }
 
-    /** Xiaomi / Redmi / POCO — Autostart must be ON or MIUI kills all app processes. */
     fun openAutostartSettings(context: Context) {
         val candidates = listOf(
             Intent().setComponent(
@@ -51,7 +49,6 @@ object DeviceSettingsHelper {
         openFirstAvailable(context, candidates)
     }
 
-    /** Vivo / iQOO — allow high background power consumption. */
     fun openVivoBackgroundSettings(context: Context) {
         val candidates = listOf(
             Intent().setComponent(

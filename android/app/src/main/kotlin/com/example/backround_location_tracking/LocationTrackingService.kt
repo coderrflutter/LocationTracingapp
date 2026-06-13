@@ -25,10 +25,6 @@ import com.google.android.gms.tasks.CancellationTokenSource
 import java.util.UUID
 import java.util.concurrent.atomic.AtomicBoolean
 
-/**
- * Foreground service — records GPS every 60 seconds into LocationStore (SQLite).
- * Uses requestLocationUpdates + Handler poll + AlarmManager for reliability.
- */
 class LocationTrackingService : Service() {
 
     private val handler = Handler(Looper.getMainLooper())

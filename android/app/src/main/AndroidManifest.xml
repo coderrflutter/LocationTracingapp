@@ -1,17 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Location permissions -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-
-    <!-- Foreground service + notifications -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <!-- Restart after reboot / force-kill -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
@@ -39,7 +34,6 @@
             </intent-filter>
         </activity>
 
-        <!-- Same process as Flutter so SQLite is shared -->
         <service
             android:name=".LocationTrackingService"
             android:exported="false"
@@ -54,7 +48,6 @@
             </intent-filter>
         </receiver>
 
-        <!-- Restart tracking after device boot -->
         <receiver
             android:name=".BootReceiver"
             android:exported="false">
@@ -63,7 +56,6 @@
             </intent-filter>
         </receiver>
 
-        <!-- Restart tracking after process death -->
         <receiver
             android:name=".TrackingRestartReceiver"
             android:exported="false">

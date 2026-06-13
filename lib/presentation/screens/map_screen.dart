@@ -5,7 +5,6 @@ import 'package:latlong2/latlong.dart';
 import '../../domain/entities/location_record.dart';
 import '../viewmodels/tracking_view_model.dart';
 
-/// OpenStreetMap view of recorded locations (no API key required).
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key, required this.viewModel});
 
